@@ -1,6 +1,7 @@
 # Waifu Generator for Zhenxun Bot 真寻Bot的老婆生成器！
 
-![demo](https://imgur.com/ajBhGje.gif)
+[//]: # (![demo]&#40;https://giphy.com/gifs/github-BUTAGwcfJJB37YT8wC&#41;)
+<iframe src="https://giphy.com/embed/BUTAGwcfJJB37YT8wC" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/github-BUTAGwcfJJB37YT8wC">via GIPHY</a></p>
 
 A [Zhenxun Bot](https://github.com/HibiKier/zhenxun_bot) plugin for generating waifu images by querying the [Waifulabs](https://www.waifulabs.com). 
 
