@@ -1,5 +1,7 @@
 # Waifu Generator for Zhenxun Bot 真寻Bot的老婆生成器！
 
+![demo](https://storage.googleapis.com/sizigi-public-bucket/website/tween1.mp4)
+
 A [Zhenxun Bot](https://github.com/HibiKier/zhenxun_bot) plugin for generating waifu images by querying the [Waifulabs](https://www.waifulabs.com). 
 
 通过访问[Waifulabs](https://www.waifulabs.com)，自动生成老婆的[绪山真寻Bot]((https://github.com/HibiKier/zhenxun_bot))插件
