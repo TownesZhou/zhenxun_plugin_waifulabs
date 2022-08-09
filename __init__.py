@@ -1,7 +1,11 @@
 """
     The zhenxun bot plugin for generating waifu images via querying waifulabs.com.
 """
+from asyncio import sleep
 
+from nonebot import on_command
+from nonebot.rule import to_me
+from nonebot.adapters.onebot.v11 import GROUP
 
 #  === Zhenxun bot plugin standard specification ===
 __zx_plugin_name__ = "老婆生成器"
@@ -35,3 +39,14 @@ __plugin_configs__ = {
 
 }
 
+# Matchers
+generate_waifu_matcher = on_command("生成老婆", aliases={"老婆"}, rule=to_me(), permission=GROUP, priority=5, block=True)
+generate_random_waifu_matcher = on_command("随机老婆", permission=GROUP, rule=to_me(), priority=5, block=True)
+
+
+# Event responses
+@generate_waifu_matcher.handle()
+async def generate_waifu():
+    await generate_waifu_matcher.send("正在生成老婆...")
+    await sleep(3)
+    await generate_waifu_matcher.finish("生成老婆成功！（测试）")
