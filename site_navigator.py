@@ -15,7 +15,7 @@ class SiteNavigator:
     @staticmethod
     async def create_navi():
         navi = SiteNavigator()
-        navi.browser = await launch()
+        navi.browser = await launch(headless=True, autoClose=True)
         navi.page = await navi.browser.newPage()
         await navi.page.setViewport({'width': 1200, 'height': 630})
         # Go to the waifulabs site
