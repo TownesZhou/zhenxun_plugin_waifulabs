@@ -1,11 +1,14 @@
 """
     The zhenxun bot plugin for generating waifu images via querying waifulabs.com.
 """
-from asyncio import sleep
+import random
+import os
 
 from nonebot import on_command
 from nonebot.rule import to_me
-from nonebot.adapters.onebot.v11 import GROUP
+from nonebot.adapters.onebot.v11 import GROUP, Message, MessageSegment
+
+from site_navigator import SiteNavigator
 
 #  === Zhenxun bot plugin standard specification ===
 __zx_plugin_name__ = "老婆生成器"
@@ -39,14 +42,31 @@ __plugin_configs__ = {
 
 }
 
+ASSET_DIR = "assets"
+if not os.path.exists(ASSET_DIR):
+    os.mkdir(ASSET_DIR)
+
 # Matchers
-generate_waifu_matcher = on_command("生成老婆", aliases={"老婆"}, rule=to_me(), permission=GROUP, priority=5, block=True)
-generate_random_waifu_matcher = on_command("随机老婆", permission=GROUP, rule=to_me(), priority=5, block=True)
+generate_waifu_matcher = on_command("生成老婆", aliases={"老婆"}, rule=to_me(), permission=GROUP, priority=4, block=True)
+generate_random_waifu_matcher = on_command("随机老婆", permission=GROUP, rule=to_me(), priority=4, block=True)
 
 
 # Event responses
-@generate_waifu_matcher.handle()
+@generate_random_waifu_matcher.handle()
 async def generate_waifu():
-    await generate_waifu_matcher.send("正在生成老婆...")
-    await sleep(3)
-    await generate_waifu_matcher.finish("生成老婆成功！（测试）")
+    await generate_random_waifu_matcher.send("正在生成随机老婆...")
+
+    # Proceed all the way through with random waifu selection
+    navi = await SiteNavigator.create_navi()
+    for _ in range(1, 5):
+        await navi.continue_grid(random.randrange(0, 15))
+    waifu_img_path = os.path.join(ASSET_DIR, "random_waifu.png")
+    await navi.waifu_default_screenshot(waifu_img_path)
+
+    # Construct response message
+    msg = Message([
+        MessageSegment.text("生成随机老婆成功！"),
+        MessageSegment.image(waifu_img_path)
+    ])
+
+    await generate_random_waifu_matcher.finish(msg)
