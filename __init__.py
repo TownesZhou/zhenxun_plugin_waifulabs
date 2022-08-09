@@ -60,13 +60,13 @@ async def generate_waifu():
     navi = await SiteNavigator.create_navi()
     for _ in range(1, 5):
         await navi.continue_grid(random.randrange(0, 15))
-    waifu_img_path = os.path.join(ASSET_DIR, "random_waifu.png")
+    waifu_img_path = os.path.abspath(os.path.join(ASSET_DIR, "random_waifu.png"))
     await navi.waifu_default_screenshot(waifu_img_path)
 
     # Construct response message
     msg = Message([
         MessageSegment.text("生成随机老婆成功！"),
-        MessageSegment.image(waifu_img_path)
+        MessageSegment.image(f"file://{waifu_img_path}")
     ])
 
     await generate_random_waifu_matcher.finish(msg)
