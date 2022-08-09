@@ -1,6 +1,6 @@
 from pyppeteer import launch
 from random import randint
-from time import sleep
+from asyncio import sleep
 
 
 class SiteNavigator:
@@ -31,15 +31,13 @@ class SiteNavigator:
         # It will be removed when the waifulabs is done loading.
         if self.stage < 5:
             while await self.page.querySelector(".loading-callout"):
-                sleep(0.01)
+                await sleep(0.01)
             # An additional sleep to wait for the waifu grid to adjust its position. This is especially necessary
             # when returning to first stage from later stages, where the grid will be re-centered after loading-callout
             # is removed.
-            sleep(0.1)
+            await sleep(0.1)
         # In the final stage, the loading div is the one with class "cross-fade-enter-exit"
         else:
-            # while await self.page.querySelector(".cross-fade-enter-exit"):
-            #     sleep(0.1)
             await self.page.waitForSelector(".cross-fade-enter-done", {'visible': True})
 
     # Take a screenshot of the default waifu
