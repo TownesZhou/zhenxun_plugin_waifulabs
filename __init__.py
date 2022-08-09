@@ -8,7 +8,7 @@ from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import GROUP, Message, MessageSegment
 
-from site_navigator import SiteNavigator
+from .site_navigator import SiteNavigator
 
 #  === Zhenxun bot plugin standard specification ===
 __zx_plugin_name__ = "老婆生成器"
