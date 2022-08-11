@@ -4,10 +4,10 @@ from asyncio import sleep
 
 
 class SiteNavigator:
+    # Browser as a class attribute, so only one browser is used for all instances
+    browser = None
 
     def __init__(self):
-        # Launch browser and open a new page
-        self.browser = None
         self.page = None
         self.stage = None
 
@@ -15,8 +15,11 @@ class SiteNavigator:
     @staticmethod
     async def create_navi():
         navi = SiteNavigator()
-        navi.browser = await launch(headless=True, autoClose=True)
-        navi.page = await navi.browser.newPage()
+        # navi.browser = await launch(headless=True, autoClose=True)
+        # Launch browser only if it is not launched yet
+        if SiteNavigator.browser is None:
+            SiteNavigator.browser = await launch(headless=True, autoClose=True)
+        navi.page = await SiteNavigator.browser.newPage()
         await navi.page.setViewport({'width': 1200, 'height': 630})
         # Go to the waifulabs site
         await navi.page.goto('https://waifulabs.com/generate')
@@ -103,3 +106,7 @@ class SiteNavigator:
         await (await self.page.querySelectorAll(".sc-bdvvtL"))[0].click()
         # Decrement stage counter
         self.stage -= 1
+
+    # Close the page
+    async def close(self):
+        await self.page.close()

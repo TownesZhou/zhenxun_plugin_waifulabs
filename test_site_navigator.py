@@ -28,6 +28,8 @@ async def default_to_end(navi):
     # stage 5
     await navi.continue_default()
     await navi.waifu_default_screenshot(os.path.join(test_screenshot_dir, "stage_5_default.png"))
+    # Close page
+    await navi.close()
 
 
 async def first_to_end(navi):
@@ -49,6 +51,8 @@ async def first_to_end(navi):
     # stage 5
     await navi.continue_grid(0)
     await navi.waifu_default_screenshot(os.path.join(test_screenshot_dir, "stage_5_default.png"))
+    # Close page
+    await navi.close()
 
 
 async def random_to_end(navi):
@@ -70,6 +74,8 @@ async def random_to_end(navi):
     # stage 5
     await navi.continue_grid(random.randrange(0, 15))
     await navi.waifu_default_screenshot(os.path.join(test_screenshot_dir, "stage_5_default.png"))
+    # Close page
+    await navi.close()
 
 
 async def refresh_to_end(navi):
@@ -99,6 +105,8 @@ async def refresh_to_end(navi):
     # stage 5
     await navi.continue_grid(0)
     await navi.waifu_default_screenshot(os.path.join(test_screenshot_dir, "stage_5_grid.png"))
+    # Close page
+    await navi.close()
 
 
 async def first_to_end_and_back(navi):
@@ -136,12 +144,16 @@ async def first_to_end_and_back(navi):
     # stage 9 (1)
     await navi.back()
     await navi.waifu_grid_screenshot(os.path.join(test_screenshot_dir, "9_grid.png"))
+    # Close page
+    await navi.close()
 
 
 async def test_process(test_func):
     start_time = time.time()
-    navi = await SiteNavigator.create_navi()
-    await test_func(navi)
+    for _ in range(3):
+        navi = await SiteNavigator.create_navi()
+        await test_func(navi)
+        print(f"Opened pages: {await navi.browser.pages()}")
     print("Time taken: {}".format(time.time() - start_time))
 
 
