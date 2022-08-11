@@ -103,3 +103,7 @@ class SiteNavigator:
         await (await self.page.querySelectorAll(".sc-bdvvtL"))[0].click()
         # Decrement stage counter
         self.stage -= 1
+
+    # Close the page
+    async def close(self):
+        await self.page.close()
