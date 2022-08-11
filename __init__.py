@@ -35,16 +35,19 @@ __plugin_block_limit__ = {
 __plugin_count_limit__ = {
     "status": False,    # No daily usage limit
 }
-# TODO: complete (or discard) plugin resource specification
-__plugin_resource__ = {}
 # Asset folder that temporarily stores waifulabs screenshot
 # Use a sub-folder within this plugin's root.
 ASSET_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 if not os.path.exists(ASSET_DIR):
     os.mkdir(ASSET_DIR)
-__plugin_configs__ = {
-    "assets": ASSET_DIR,
+__plugin_resource__ = {
+    "assets": ASSET_DIR
 }
+# TODO: complete plugin user configs specification
+__plugin_configs__ = {
+
+}
+
 
 
 # Matchers
