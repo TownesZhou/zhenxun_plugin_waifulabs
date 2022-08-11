@@ -138,7 +138,7 @@ async def first_to_end_and_back(navi):
     await navi.waifu_grid_screenshot(os.path.join(test_screenshot_dir, "9_grid.png"))
 
 
-async def test_info(test_func):
+async def test_process(test_func):
     start_time = time.time()
     navi = await SiteNavigator.create_navi()
     await test_func(navi)
@@ -156,4 +156,4 @@ if __name__ == '__main__':
 
     # Select one of the above functions to test
     test_func = random_to_end
-    asyncio.get_event_loop().run_until_complete(test_info(test_func))
+    asyncio.get_event_loop().run_until_complete(test_process(test_func))
