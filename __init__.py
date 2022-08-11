@@ -37,14 +37,15 @@ __plugin_count_limit__ = {
 }
 # TODO: complete (or discard) plugin resource specification
 __plugin_resource__ = {}
-# TODO: complete plugin user configs specification
-__plugin_configs__ = {
-
-}
-
-ASSET_DIR = "assets"
+# Asset folder that temporarily stores waifulabs screenshot
+# Use a sub-folder within this plugin's root.
+ASSET_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 if not os.path.exists(ASSET_DIR):
     os.mkdir(ASSET_DIR)
+__plugin_configs__ = {
+    "assets": ASSET_DIR,
+}
+
 
 # Matchers
 generate_waifu_matcher = on_command("生成老婆", aliases={"老婆"}, rule=to_me(), permission=GROUP, priority=4, block=True)
