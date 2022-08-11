@@ -1,5 +1,4 @@
 from pyppeteer import launch
-from random import randint
 from asyncio import sleep
 
 
@@ -15,7 +14,6 @@ class SiteNavigator:
     @staticmethod
     async def create_navi():
         navi = SiteNavigator()
-        # navi.browser = await launch(headless=True, autoClose=True)
         # Launch browser only if it is not launched yet
         if SiteNavigator.browser is None:
             SiteNavigator.browser = await launch(headless=True, autoClose=True)
