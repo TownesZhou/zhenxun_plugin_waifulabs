@@ -3,6 +3,7 @@
 """
 import random
 import os
+from logging import Logger
 
 from nonebot import on_command
 from nonebot.rule import to_me
@@ -47,7 +48,6 @@ __plugin_resource__ = {
 __plugin_configs__ = {
 
 }
-
 
 
 # Matchers

@@ -3,7 +3,7 @@ import asyncio
 import random
 import time
 
-from site_navigator import SiteNavigator
+from plugins.waifulabs.site_navigator import SiteNavigator
 
 
 test_screenshot_dir = "test_screenshot"

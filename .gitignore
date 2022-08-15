@@ -132,4 +132,4 @@ dmypy.json
 .idea/
 
 # Test resource directory
-test_screenshot/
+tests/test_screenshot/
